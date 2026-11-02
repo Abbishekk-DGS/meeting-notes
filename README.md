@@ -7,6 +7,35 @@
 <!-- author-banner -->
 > **Project 03 of 20** in my AI build series, designed and built by **[Abbishekk DGS](https://abbishekkdgs.tech)**. [See all projects →](https://github.com/Abbishekk-DGS)
 
+<!-- overview:start -->
+## Overview
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/overview-dark.svg">
+  <img alt="meeting-notes overview: how it works and its output. Key numbers: Offline no uploads, no bot; 5 outputs: MD, SRT, VTT, TXT, JSON; 5 sizes of Whisper, tiny to large-v3; int8 Whisper on CPU. Stack: Python · faster-whisper · Silero VAD · Ollama · map-reduce · PyAV." src="docs/overview-light.svg" width="100%">
+</picture>
+
+## Interface
+
+It is one terminal command. There is no graphical app.
+
+```
+meeting-notes <audio-or-video> [options]
+meeting-notes --from-transcript <name>.json [options]
+```
+
+| Option | What it does | Default |
+|---|---|---|
+| `--whisper` | Whisper size: tiny, base, small, medium or large-v3 | small |
+| `--language` | Forces a language, such as `en`, `ta` or `hi` | detected |
+| `--model` | Ollama model for the summary | `qwen2.5:3b` |
+| `--from-transcript` | Re-summarizes a saved `<name>.json` without transcribing again | |
+| `--out` | Output folder | `outputs` |
+| `--title` | Title for the notes | |
+
+A full run writes `<name>.notes.md`, `<name>.srt`, `<name>.vtt`, `<name>.txt` and `<name>.json`.
+<!-- overview:end -->
+
 ## Example
 
 Input: a 17-second recording of a product sync. Real output from `qwen2.5:3b` (`outputs/sync.notes.md`):
